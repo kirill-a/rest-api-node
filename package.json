@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/kirill-a/rest-api-node#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "gulp": "^3.9.1",
+    "mongoose": "^4.13.7",
     "nodemon": "^1.12.5"
   }
 }
