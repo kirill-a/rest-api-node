@@ -1,16 +1,16 @@
 var gulp = require('gulp'),
-    nodemon = require('nodemon')
+  nodemon = require('nodemon')
 
 gulp.task('default', () => {
-    nodemon({
-        script: 'app.js',
-        ext: 'js',
-        env: {
-            PORT: 8000
-        },
-        ignore: ['./node_modules/**']
-    })
+  nodemon({
+    script: 'app.js',
+    ext: 'js',
+    env: {
+      PORT: 8000
+    },
+    ignore: ['./node_modules/**']
+  })
     .on('restart', () => {
-        console.log('Restarting')
+      console.log('Restarting')
     })
 })
