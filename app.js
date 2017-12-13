@@ -2,25 +2,30 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser')
 
-var db = mongoose.connect('mongodb://127.0.0.1:27017/userAPI',
-{
-    useMongoClient: true,
-    bufferMaxEntries: 0},
-    function(err) {
-        if (err) {
-            console.err(err);
-        } else {
-            console.log('Connected to db');
-        }
-    }
-)
+mongoose.connect('mongodb://127.0.0.1:27017/userAPI', {useMongoClient: true})
+mongoose.connection.on('error', () => {
+    throw new Error(`unable to connect to database`)
+})
+mongoose.connection.on('connected', function () {
+    console.log('Mongoose connection open')
+})
+mongoose.connection.on('disconnected', function () {
+    console.log('Mongoose connection disconnected')
+})
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function() {
+    mongoose.connection.close(function () {
+        console.log('Mongoose default connection disconnected through app termination')
+        process.exit(0)
+    })
+})
 
 var User = require('./models/userModel')
 var app = express()
 var port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json)
+app.use(bodyParser.json())
 
 var router = express.Router()
 

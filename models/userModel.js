@@ -6,6 +6,6 @@ var userModel = new Schema({
     lastName:  { type: String },
     jobTitle:  { type: String },
     isFulltime:  { type: Boolean, dafault: true },
-}, { bufferCommands: false })
+})
 
 module.exports = mongoose.model('User', userModel)
