@@ -2,6 +2,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser')
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017/userAPI', {useMongoClient: true})
 mongoose.connection.on('error', () => {
     throw new Error(`unable to connect to database`)
