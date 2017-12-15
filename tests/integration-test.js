@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 var request = require('request')
 var expect = require('chai').expect
 var proxyURL = 'http://127.0.0.1:8000/api'
