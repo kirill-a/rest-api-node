@@ -1,6 +1,6 @@
-var express = require('express'),
-  mongoose = require('mongoose'),
-  bodyParser = require('body-parser')
+var express = require('express')
+var mongoose = require('mongoose')
+var bodyParser = require('body-parser')
 
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://127.0.0.1:27017/userAPI', {useMongoClient: true})
@@ -21,7 +21,7 @@ process.on('SIGINT', function () {
   })
 })
 
-var User = require('./models/userModel')
+var User = require('./src/models/userModel')
 var app = express()
 var port = process.env.PORT || 3000
 
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 // Inject User object to not require it again in router
-router = require('./routes/userRoute')(User)
+var router = require('./src/routes/userRoute')(User)
 
 app.use('/api/users', router)
 
